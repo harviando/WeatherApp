@@ -15,6 +15,8 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     
+    var weatherManager = WeatherManager() //inisialisasi struct WeatherManager ke variable weatherManager
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -50,6 +52,9 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     // Mendeteksi kalau user telah selesai memasukkan input pada textfield
     func textFieldDidEndEditing(_ textField: UITextField) {
         
+        if let city = searchTextField.text { // untuk opsionaly unwarp teks dari searchTextField ke city
+            weatherManager.fetchWeather(cityName: city) // jalanin fungsi fetchWeather di struct weatherManager dgn ngasih city ke param
+        }
         searchTextField.text = "" // mengosongkan teks pada searchTextField.text
     }
     
