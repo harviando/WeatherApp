@@ -20,4 +20,5 @@ struct Main: Decodable {
 
 struct Weather: Decodable { //this structure is an structture to each array that exist on "weather" properties
     let description: String
+    let id: Int
 }

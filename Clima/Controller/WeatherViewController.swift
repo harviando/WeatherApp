@@ -55,6 +55,9 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         if let city = searchTextField.text { // untuk opsionaly unwarp teks dari searchTextField ke city
             weatherManager.fetchWeather(cityName: city) // jalanin fungsi fetchWeather di struct weatherManager dgn ngasih city ke param
         }
+        
+        
+        
         searchTextField.text = "" // mengosongkan teks pada searchTextField.text
     }
     
