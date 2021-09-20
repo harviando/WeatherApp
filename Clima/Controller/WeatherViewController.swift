@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate {
+class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
 
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -21,6 +21,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         searchTextField.delegate = self // untuk mengassign delegate pada searchTextField
+        weatherManager.delegate = self // untuk assign kelas ini ke delegate weatherManager
     }
 
     //Fungsi yang dijalankan ketika button search di tekan
@@ -59,6 +60,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         
         
         searchTextField.text = "" // mengosongkan teks pada searchTextField.text
+    }
+    
+    func didUpdateWeather(weather: WeatherModel) {
+        print("didUpdate: \(weather.tempratureString)")
     }
     
     //Fungsi untuk mengubah label cityLabel sesuai dengan Teks pada seacrhFieldText
