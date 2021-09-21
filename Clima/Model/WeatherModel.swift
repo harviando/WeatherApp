@@ -21,7 +21,7 @@ struct WeatherModel {
     var conditionName: String { //Computed property; datatype is type that needs to be returned
         switch conditionId{
         case 200...232:
-            return "cloud.bolt"
+            return "cloud.bolt.rain"
         case 300...321:
             return "cloud.drizzle"
         case 500...531:
@@ -33,7 +33,7 @@ struct WeatherModel {
         case 800:
             return "sun.max"
         case 801...804:
-            return "cloud.bolt"
+            return "cloud.sun"
         default:
             return "cloud"
         }

@@ -64,7 +64,10 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
     
     //Delegate methon from WeatherManager
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
-        print("didUpdate: \(weather.tempratureString)")
+        DispatchQueue.main.async {
+            self.temperatureLabel.text = weather.tempratureString
+            self.conditionImageView.image = UIImage(systemName: weather.conditionName)
+        }
     }
     
     func didFailWithError(error: Error) {
