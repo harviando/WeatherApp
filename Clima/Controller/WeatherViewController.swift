@@ -62,8 +62,13 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         searchTextField.text = "" // mengosongkan teks pada searchTextField.text
     }
     
-    func didUpdateWeather(weather: WeatherModel) {
+    //Delegate methon from WeatherManager
+    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         print("didUpdate: \(weather.tempratureString)")
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
     }
     
     //Fungsi untuk mengubah label cityLabel sesuai dengan Teks pada seacrhFieldText
