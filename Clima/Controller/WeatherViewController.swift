@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate {
+class WeatherViewController: UIViewController {
 
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -23,7 +23,16 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         searchTextField.delegate = self // untuk mengassign delegate pada searchTextField
         weatherManager.delegate = self // untuk assign kelas ini ke delegate weatherManager
     }
+    
+    //Fungsi untuk mengubah label cityLabel sesuai dengan Teks pada seacrhFieldText
+    func changeCityLabel(toName: String) {
+        cityLabel.text = toName
+    }
+}
 
+//MARK: - UITextFieldDelegate
+extension WeatherViewController: UITextFieldDelegate {
+    
     //Fungsi yang dijalankan ketika button search di tekan
     @IBAction func searchPressed(_ sender: UIButton) {
         
@@ -57,11 +66,13 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
             weatherManager.fetchWeather(cityName: city) // jalanin fungsi fetchWeather di struct weatherManager dgn ngasih city ke param
         }
         
-        
-        
         searchTextField.text = "" // mengosongkan teks pada searchTextField.text
     }
-    
+}
+
+//MARK: - WeatherManagerDelegate
+extension WeatherViewController: WeatherManagerDelegate {
+   
     //Delegate methon from WeatherManager
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         DispatchQueue.main.async {
@@ -73,10 +84,4 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
     func didFailWithError(error: Error) {
         print(error)
     }
-    
-    //Fungsi untuk mengubah label cityLabel sesuai dengan Teks pada seacrhFieldText
-    func changeCityLabel(toName: String) {
-        cityLabel.text = toName
-    }
 }
-
